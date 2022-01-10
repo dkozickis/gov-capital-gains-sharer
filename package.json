@@ -2,9 +2,6 @@
   "name": "i-just-got-paid",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {
-    "postinstall": "remix setup node"
-  },
   "private": true,
   "devDependencies": {
     "@nrwl/cli": "13.4.3",
@@ -16,7 +13,6 @@
     "@nrwl/node": "^13.4.3",
     "@nrwl/nx-cloud": "latest",
     "@nrwl/react": "13.4.3",
-    "@nrwl/remix": "^1.0.0-beta.8",
     "@nrwl/tao": "13.4.3",
     "@nrwl/web": "13.4.3",
     "@nrwl/workspace": "13.4.3",
