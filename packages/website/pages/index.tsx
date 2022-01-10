@@ -34,6 +34,7 @@ const ResultTable = ({ transactions }: { transactions: Transaction[] }) => (
 );
 
 const Index = () => {
+  const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<Transaction[] | null>(null);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -47,17 +48,19 @@ const Index = () => {
         className="w-96"
         onSubmit={(event) => {
           event.preventDefault();
+          setLoading(true);
 
-          const kek = new FormData(event.currentTarget);
-          kek.append('file', fileInputRef.current.files[0]);
+          const body = new FormData(event.currentTarget);
+          body.append('file', fileInputRef.current.files[0]);
 
           fetch('/api/process', {
             method: 'POST',
-            body: kek,
+            body,
           })
             .then(async (response) => {
               const result: Transaction[] = await response.json();
               setResult(result);
+              setLoading(false);
             })
             .catch(() => alert('Something went wrong :shrug:'));
         }}
@@ -88,9 +91,11 @@ const Index = () => {
             'inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-orange-500',
             'hover:bg-orange-600',
             focusClasses,
+            'disabled:bg-pgray-500',
           ].join(' ')}
+          disabled={loading}
         >
-          Process
+          {loading ? 'Loading...' : 'Process'}
         </button>
       </form>
 
