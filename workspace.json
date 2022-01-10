@@ -1,4 +1,7 @@
 {
   "version": 2,
-  "projects": {}
+  "projects": {
+    "etrade-to-eds": "packages/etrade-to-eds",
+    "website": "packages/website"
+  }
 }

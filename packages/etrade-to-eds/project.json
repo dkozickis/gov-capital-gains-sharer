@@ -1,0 +1,34 @@
+{
+  "root": "packages/etrade-to-eds",
+  "sourceRoot": "packages/etrade-to-eds/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/node:package",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/etrade-to-eds",
+        "tsConfig": "packages/etrade-to-eds/tsconfig.lib.json",
+        "packageJson": "packages/etrade-to-eds/package.json",
+        "main": "packages/etrade-to-eds/src/index.ts",
+        "assets": ["packages/etrade-to-eds/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/etrade-to-eds/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/etrade-to-eds"],
+      "options": {
+        "jestConfig": "packages/etrade-to-eds/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
