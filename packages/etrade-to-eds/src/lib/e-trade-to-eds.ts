@@ -17,11 +17,13 @@ export type Transaction = {
 
 export function dateToISOString(date: string) {
   const [month, day, year] = date.split('/');
-  return `${year}${month.padStart(2, '0')}${day.padStart(2, '0')}`;
+  return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
 }
 
 export async function getDateExchangeRate(date: string) {
-  const csv = await got(`https://www.bank.lv/vk/ecb.csv?date=${date}`).text();
+  const csv = await got(
+    `https://www.bank.lv/vk/ecb.csv?date=${date.replace('-', '')}`
+  ).text();
 
   const csvLines = csv.split(/(\r?\n)/);
 
