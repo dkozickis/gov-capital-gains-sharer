@@ -1,6 +1,10 @@
 import { useRef, useState } from 'react';
 import { Transaction } from '@i-just-got-paid/etrade-to-eds';
 
+const dateFormatter = new Intl.DateTimeFormat('lv-LV', {
+  dateStyle: 'short',
+});
+
 const focusClasses =
   'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500';
 
@@ -22,7 +26,9 @@ const ResultTable = ({ transactions }: { transactions: Transaction[] }) => (
       {transactions.map(
         ({ dateSold, dateAcquired, costBasis, totalProceeds }, index) => (
           <tr key={`${dateAcquired}-${dateSold}-${index}`}>
-            <td className="p-2 border-b font-mono">{dateSold}</td>
+            <td className="p-2 border-b font-mono">
+              {dateFormatter.format(new Date(dateSold))}
+            </td>
             <td className="p-2 border-b font-mono">{totalProceeds}</td>
             <td className="p-2 border-b font-mono">{totalProceeds}</td>
             <td className="p-2 border-b font-mono">{costBasis}</td>
