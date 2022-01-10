@@ -66,9 +66,11 @@ const Index = () => {
             .then(async (response) => {
               const result: Transaction[] = await response.json();
               setResult(result);
-              setLoading(false);
             })
-            .catch(() => alert('Something went wrong :shrug:'));
+            .catch(() => alert('Something went wrong :shrug:'))
+            .finally(() => {
+              setLoading(false);
+            });
         }}
       >
         <label
