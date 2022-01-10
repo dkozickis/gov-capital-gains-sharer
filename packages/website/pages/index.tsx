@@ -4,39 +4,36 @@ import { Transaction } from '@i-just-got-paid/etrade-to-eds';
 const focusClasses =
   'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500';
 
-function ResultTable({ transactions }: { transactions: Transaction[] }) {
-  return (
-    <table className="table-fixed mt-8 text-right">
-      <thead>
-        <tr className="text-xs">
-          <th className="w-28 p-2 pb-0">(1) Ienākuma gūšanas diena</th>
-          <th className="w-32 p-2 pb-0">
-            (3) Ieņēmumi no kapitāla aktīva atsavināšanas
-          </th>
-          <th className="w-28 p-2 pb-0">(4) Saņemtā ieņēmumu daļa</th>
-          <th className="w-32 p-2 pb-0">
-            (5) Izdevumi, kas saistīti ar kapitāla aktīva iegādi
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        {transactions.map(
-          ({ dateSold, dateAcquired, costBasis, totalProceeds }, index) => (
-            <tr key={`${dateAcquired}-${dateSold}-${index}`}>
-              <td className="p-2 border-b font-mono">{dateSold}</td>
-              <td className="p-2 border-b font-mono">{totalProceeds}</td>
-              <td className="p-2 border-b font-mono">{totalProceeds}</td>
-              <td className="p-2 border-b font-mono">{costBasis}</td>
-            </tr>
-          )
-        )}
-      </tbody>
-      TEST CACHE BUSTINGF
-    </table>
-  );
-}
+const ResultTable = ({ transactions }: { transactions: Transaction[] }) => (
+  <table className="table-fixed mt-8 text-right">
+    <thead>
+      <tr className="text-xs">
+        <th className="w-28 p-2 pb-0">(1) Ienākuma gūšanas diena</th>
+        <th className="w-32 p-2 pb-0">
+          (3) Ieņēmumi no kapitāla aktīva atsavināšanas
+        </th>
+        <th className="w-28 p-2 pb-0">(4) Saņemtā ieņēmumu daļa</th>
+        <th className="w-32 p-2 pb-0">
+          (5) Izdevumi, kas saistīti ar kapitāla aktīva iegādi
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      {transactions.map(
+        ({ dateSold, dateAcquired, costBasis, totalProceeds }, index) => (
+          <tr key={`${dateAcquired}-${dateSold}-${index}`}>
+            <td className="p-2 border-b font-mono">{dateSold}</td>
+            <td className="p-2 border-b font-mono">{totalProceeds}</td>
+            <td className="p-2 border-b font-mono">{totalProceeds}</td>
+            <td className="p-2 border-b font-mono">{costBasis}</td>
+          </tr>
+        )
+      )}
+    </tbody>
+  </table>
+);
 
-export function Index() {
+const Index = () => {
   const [result, setResult] = useState<Transaction[] | null>(null);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -100,6 +97,6 @@ export function Index() {
       {result ? <ResultTable transactions={result} /> : null}
     </div>
   );
-}
+};
 
 export default Index;
