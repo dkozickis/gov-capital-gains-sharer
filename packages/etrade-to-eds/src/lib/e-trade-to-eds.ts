@@ -22,7 +22,7 @@ export function dateToISOString(date: string) {
 
 export async function getDateExchangeRate(date: string) {
   const csv = await got(
-    `https://www.bank.lv/vk/ecb.csv?date=${date.replace('-', '')}`
+    `https://www.bank.lv/vk/ecb.csv?date=${date.replaceAll('-', '')}`
   ).text();
 
   const csvLines = csv.split(/(\r?\n)/);
